@@ -23,7 +23,6 @@ describe('Rate limiting', function() {
       req = bt.req;
     });
 
-
     it('Will reject a request without a token', function(done) {
       req.get('/resource')
         .expect(401, done);
@@ -65,5 +64,45 @@ describe('Rate limiting', function() {
       }).catch(done);
     });
   });
-});
 
+  describe.only('Consume Configuration', function () {
+    boot.setup(function(store) {
+      store.app.get('/resource', store.kConnect.consume({
+        consumeUnits: 5,
+        headerToken: 'X-Token',
+        headerRemaining: 'X-Remaining',
+        handleError: function(res) {
+          res.statusCode = 444;
+          res.end('lol');
+        }
+      }));
+      store.app.get('/resource', function(req, res) {
+        res.end('ok');
+      });
+    }, function(res) {
+      bt = res;
+      req = bt.req;
+    });
+
+    it('Will reject a request without a token', function(done) {
+      req.get('/resource')
+        .expect(444, done);
+    });
+    it('Will reject a request an empty token', function(done) {
+      req.get('/resource')
+        .set('X-Token', '')
+        .expect(444, done);
+    });
+    it('Will reject a request with a non existing token', function(done) {
+      req.get('/resource')
+        .set('X-Token', 'none existing')
+        .expect(444, done);
+    });
+    it('Will consume a unit', function(done) {
+      req.get('/resource')
+        .set('X-Token', bt.fix.token)
+        .expect(200)
+        .expect('X-Remaining', '5', done);
+    });
+  });
+});
