@@ -42,5 +42,22 @@ describe('Manage', function() {
           done();
         });
     });
+    it('Will error when Max Tokens exceeded', function(done) {
+      var times = new Array(3);
+      Promise.map(times, function() {
+        return new Promise(function(resolve, reject) {
+          var web = new Web(bt.webserver.expressApp);
+          web.post('/token')
+            .end(function(err) {
+              if (err) { return reject(err); }
+              resolve();
+            });
+        }).then(function() {
+          var web = new Web(bt.webserver.expressApp);
+          web.post('/token')
+            .expect(429, done);
+        }).catch(done);
+      });
+    });
   });
 });

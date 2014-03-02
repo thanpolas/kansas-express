@@ -65,7 +65,7 @@ describe('Rate limiting', function() {
     });
   });
 
-  describe.only('Consume Configuration', function () {
+  describe('Consume Configuration', function () {
     boot.setup(function(store) {
       store.app.get('/resource', store.kConnect.consume({
         consumeUnits: 5,
