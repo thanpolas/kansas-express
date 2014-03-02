@@ -1,7 +1,7 @@
 /**
  * @fileOverview Rate limits.
  */
-
+var Promise = require('bluebird');
 var chai = require('chai');
 var expect = chai.expect;
 
@@ -61,6 +61,26 @@ describe('Rate limiting', function() {
         .set('X-Api-Token', fix.token)
         .expect(200)
         .expect('X-RateLimit-Remaining', '9', done);
+    });
+    it('Will consume all units', function(done) {
+      var times = new Array(10);
+      Promise.map(times, function() {
+        return new Promise(function(resolve, reject) {
+          var web = new Web(webserver.expressApp);
+          web.req.get('/resource')
+            .set('X-Api-Token', fix.token)
+            .expect(200)
+            .end(function(err) {
+              if (err) { return reject(err); }
+              resolve();
+            });
+        });
+      }).then(function() {
+        var web = new Web(webserver.expressApp);
+        web.req.get('/resource')
+          .set('X-Api-Token', fix.token)
+          .expect(429, done);
+      }).catch(done);
     });
   });
 });
