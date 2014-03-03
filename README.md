@@ -1,12 +1,12 @@
-# Kansas Connect
+# Kansas Express
 
-[Kansas][] API usage limiter Middleware for [Connect][].
+[Kansas][] API usage limiter Middleware for [Express][].
 
-[![Build Status](https://secure.travis-ci.org/thanpolas/kansas-connect.png?branch=master)](http://travis-ci.org/thanpolas/kansas-connect)
+[![Build Status](https://secure.travis-ci.org/thanpolas/kansas-express.png?branch=master)](http://travis-ci.org/thanpolas/kansas-express)
 
 ## Getting Started
 
-Install the module with: `npm install kansas-connect --save`
+Install the module with: `npm install kansas-express --save`
 
 ```javascript
 ```
@@ -27,5 +27,5 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 ## License
 Copyright (c) 2014 Thanasis Polychronakis. Licensed under the MIT license.
 
-[connect]: https://github.com/senchalabs/connect
+[express]: expressjs.com
 [kansas]: https://github.com/thanpolas/kansas
