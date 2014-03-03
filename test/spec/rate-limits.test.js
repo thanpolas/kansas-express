@@ -14,8 +14,8 @@ describe('Rate limiting', function() {
 
   describe('Consume', function () {
     boot.setup(function(store) {
-      var consume = store.kansasConsume(bt.fix.api);
-      store.app.get('/resource', consume.use);
+      var consume = store.kansasConsume(store.fix.api);
+      store.app.get('/resource', consume.use());
       store.app.get('/resource', function(req, res) {
         res.end('ok');
       });
@@ -68,7 +68,7 @@ describe('Rate limiting', function() {
 
   describe('Consume Configuration', function () {
     boot.setup(function(store) {
-      var consume = store.kansasConsume(bt.api);
+      var consume = store.kansasConsume(bt.fix.api);
 
       consume.setup({
         consumeUnits: 5,

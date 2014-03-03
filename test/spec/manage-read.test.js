@@ -13,7 +13,7 @@ describe('Manage Read', function() {
   var bt;
   var req;
 
-  describe.only('Read', function () {
+  describe('Read', function () {
     boot.setup(function(store) {
       var manage = store.kansasManage(store.fix.api);
       manage.setup({
