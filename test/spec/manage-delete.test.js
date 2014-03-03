@@ -12,7 +12,7 @@ describe('Manage Delete', function() {
   var bt;
   var req;
 
-  describe('Delete', function () {
+  describe.only('Delete', function () {
     boot.setup(function(store) {
       var manage = store.kansasManage(store.fix.api);
       manage.setup({
@@ -29,7 +29,7 @@ describe('Manage Delete', function() {
       req = bt.req;
     });
 
-    it.only('Will return 204 when delete a token', function(done) {
+    it('Will return 204 when delete a token', function(done) {
       req.del('/token/' + bt.fix.token)
         .expect(204, done);
     });
@@ -39,10 +39,9 @@ describe('Manage Delete', function() {
         .expect(204)
         .end(function(err) {
           if (err) {return done(err);}
-
-          bt.api.get(bt.fix.token).then(function(res) {
+          bt.fix.api.get(bt.fix.token).then(function(res) {
             expect(res).to.be.null;
-          });
+          }).then(done, done);
         });
     });
   });
