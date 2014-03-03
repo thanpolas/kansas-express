@@ -48,8 +48,8 @@ Webserver.prototype.express = function(optPayload) {
 
     // Setup express
     app.set('port', Webserver.PORT);
-    app.use(express.bodyParser());
-    app.use(express.methodOverride());
+    app.use(express.json());
+    app.use(express.urlencoded());
 
     app.use(app.router);
 
