@@ -23,18 +23,18 @@
     "test": "./node_modules/.bin/mocha -b test/spec -u bdd  -R spec"
   },
   "peerDependencies": {
-    "kansas": "~0.1.5"
+    "kansas": "~0.1.6"
   },
   "dependencies": {
     "logg": "~0.2.2",
     "cip": "~0.2.1",
     "middlewarify": "~0.3.7",
-    "bluebird": "~1.0.7",
+    "bluebird": "~1.0.8",
     "lodash": "~2.4.1",
     "grunt-release": "~0.7.0"
   },
   "devDependencies": {
-    "kansas": "~0.1.5",
+    "kansas": "~0.1.6",
     "load-grunt-tasks": "~0.4.0",
     "mocha": "~1.17.1",
     "grunt-mocha-test": "~0.9.4",
