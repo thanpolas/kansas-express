@@ -30,7 +30,8 @@
     "cip": "~0.2.1",
     "middlewarify": "~0.3.7",
     "bluebird": "~1.0.7",
-    "lodash": "~2.4.1"
+    "lodash": "~2.4.1",
+    "grunt-release": "~0.7.0"
   },
   "devDependencies": {
     "kansas": "~0.1.5",
