@@ -18,7 +18,7 @@ describe('Manage', function() {
       manage.setup({
         provide: function(/* req, res */) {
           return Promise.resolve({
-            userId: 'hip',
+            ownerId: 'hip',
             policyName: 'free',
           });
         }
@@ -29,13 +29,12 @@ describe('Manage', function() {
       req = bt.req;
     });
 
-    it.only('Will create a new token', function(done) {
+    it('Will create a new token', function(done) {
       req.post('/token')
         // .set('Content-Type', 'application/json')
         .expect(200)
         .expect('Content-Type', /json/)
         .end(function(err, res) {
-          console.log('EEEEEEEEEEEEEEEEEEEEEEEEEEE', err, res.body);
           expect(res.body.token).to.be.a('string');
           expect(res.body.token).to.have.length(32);
           expect(res.body.ownerId).to.equal('hip');
@@ -44,20 +43,20 @@ describe('Manage', function() {
           done();
         });
     });
-    it('Will error when Max Tokens exceeded', function(done) {
+    it.only('Will error when Max Tokens exceeded', function(done) {
       var times = new Array(3);
       Promise.map(times, function() {
         return new Promise(function(resolve, reject) {
           var web = new Web(bt.webserver.expressApp);
-          web.post('/token')
+          web.req.post('/token')
             .end(function(err) {
               if (err) { return reject(err); }
               resolve();
             });
         }).then(function() {
           var web = new Web(bt.webserver.expressApp);
-          web.post('/token')
-            .expect(429, done);
+          web.req.post('/token')
+            .expect(403, done);
         }).catch(done);
       });
     });
