@@ -14,11 +14,11 @@ describe('Manage Delete', function() {
 
   describe('Delete', function () {
     boot.setup(function(store) {
-      var manage = store.kansasManage(bt.fix.api);
+      var manage = store.kansasManage(store.fix.api);
       manage.setup({
         provide: function(/* req, res */) {
           return Promise.resolve({
-            userId: 'hip',
+            ownerId: 'hip',
             policyName: 'free',
           });
         }
@@ -29,15 +29,13 @@ describe('Manage Delete', function() {
       req = bt.req;
     });
 
-    it('Will return 204 when delete a token', function(done) {
+    it.only('Will return 204 when delete a token', function(done) {
       req.del('/token/' + bt.fix.token)
-        .set('Content-Type', 'application/json')
         .expect(204, done);
     });
 
     it('verify token is deleted', function(done) {
       req.del('/token/' + bt.fix.token)
-        .set('Content-Type', 'application/json')
         .expect(204)
         .end(function(err) {
           if (err) {return done(err);}

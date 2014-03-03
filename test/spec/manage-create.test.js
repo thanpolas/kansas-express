@@ -43,7 +43,7 @@ describe('Manage', function() {
           done();
         });
     });
-    it.only('Will error when Max Tokens exceeded', function(done) {
+    it('Will error when Max Tokens exceeded', function(done) {
       var times = new Array(3);
       Promise.map(times, function() {
         return new Promise(function(resolve, reject) {
