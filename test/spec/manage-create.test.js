@@ -49,16 +49,17 @@ describe('Manage', function() {
         return new Promise(function(resolve, reject) {
           var web = new Web(bt.webserver.expressApp);
           web.req.post('/token')
+            .expect(200)
             .end(function(err) {
               if (err) { return reject(err); }
               resolve();
             });
-        }).then(function() {
-          var web = new Web(bt.webserver.expressApp);
-          web.req.post('/token')
-            .expect(403, done);
-        }).catch(done);
-      });
+        });
+      }).then(function() {
+        var web = new Web(bt.webserver.expressApp);
+        web.req.post('/token')
+          .expect(403, done);
+      }).catch(done);
     });
   });
 });
