@@ -10,7 +10,7 @@ Install the module with: `npm install kansas-express --save`
 
 ## Overview
 
-Kansas Express offers two type of Middleware, [Consume](#the-consume-middleware) and Manage.
+Kansas Express offers two type of Middleware, [Consume](#the-consume-middleware) and [Manage](#the-manage-middleware).
 
 ## The Consume Middleware
 
