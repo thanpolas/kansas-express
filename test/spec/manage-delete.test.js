@@ -5,7 +5,6 @@ var Promise = require('bluebird');
 var chai = require('chai');
 var expect = chai.expect;
 
-var tokenAssert = require('../lib/token-assertions');
 // var Web = require('../lib/web');
 var boot = require('../lib/bootstrap');
 
@@ -15,7 +14,8 @@ describe('Manage Delete', function() {
 
   describe('Delete', function () {
     boot.setup(function(store) {
-      store.kConnect.setup({
+      var manage = store.kansasManage();
+      manage.setup({
         provide: function(/* req, res */) {
           return Promise.resolve({
             userId: 'hip',
@@ -23,7 +23,7 @@ describe('Manage Delete', function() {
           });
         }
       });
-      store.kConnect.manage(store.app);
+      manage.addRoutes(store.app);
     }, function(res) {
       bt = res;
       req = bt.req;

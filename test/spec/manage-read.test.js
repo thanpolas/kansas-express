@@ -15,7 +15,8 @@ describe('Manage Read', function() {
 
   describe('Read', function () {
     boot.setup(function(store) {
-      store.kConnect.setup({
+      var manage = store.kansasManage();
+      manage.setup({
         provide: function(/* req, res */) {
           return Promise.resolve({
             userId: 'hip',
@@ -23,7 +24,7 @@ describe('Manage Read', function() {
           });
         }
       });
-      store.kConnect.manage(store.app);
+      manage.addRoutes(store.app);
     }, function(res) {
       bt = res;
       req = bt.req;

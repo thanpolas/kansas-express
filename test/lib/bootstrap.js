@@ -7,7 +7,8 @@ var Webserver = require('./webserver');
 var Web = require('./web');
 
 var boot = module.exports = {};
-var kansasConnect = require('../..');
+var kansasConsume = require('../../consume');
+var kansasManage = require('../../manage');
 
 boot.setup = function(setupExpress, cb) {
   var fix;
@@ -17,7 +18,6 @@ boot.setup = function(setupExpress, cb) {
 
   fixtures.setupCase(function(res) {
     fix = res;
-    kConnect = kansasConnect(fix.api);
   });
 
   beforeEach(function(done) {
@@ -26,7 +26,8 @@ boot.setup = function(setupExpress, cb) {
       setupExpress({
         app: app,
         fix: fix,
-        kConnect: kConnect,
+        kansasConsume: kansasConsume,
+        kansasManage: kansasManage,
       });
     }).then(done.bind(null, null), done);
   });

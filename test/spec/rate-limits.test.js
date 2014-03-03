@@ -14,7 +14,8 @@ describe('Rate limiting', function() {
 
   describe('Consume', function () {
     boot.setup(function(store) {
-      store.app.get('/resource', store.kConnect.consume());
+      var consume = store.kansasConsume();
+      store.app.get('/resource', consume.use);
       store.app.get('/resource', function(req, res) {
         res.end('ok');
       });
@@ -67,7 +68,9 @@ describe('Rate limiting', function() {
 
   describe('Consume Configuration', function () {
     boot.setup(function(store) {
-      store.app.get('/resource', store.kConnect.consume({
+      var consume = store.kansasConsume();
+
+      consume.setup({
         consumeUnits: 5,
         headerToken: 'X-Token',
         headerRemaining: 'X-Remaining',
@@ -75,7 +78,10 @@ describe('Rate limiting', function() {
           res.statusCode = 444;
           res.end('lol');
         }
-      }));
+      });
+
+
+      store.app.get('/resource', consume.use());
       store.app.get('/resource', function(req, res) {
         res.end('ok');
       });
