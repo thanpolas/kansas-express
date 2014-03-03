@@ -12,7 +12,7 @@ describe('Manage Delete', function() {
   var bt;
   var req;
 
-  describe.only('Delete', function () {
+  describe('Delete', function () {
     boot.setup(function(store) {
       var manage = store.kansasManage(store.fix.api);
       manage.setup({

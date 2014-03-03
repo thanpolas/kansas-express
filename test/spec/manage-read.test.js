@@ -13,13 +13,13 @@ describe('Manage Read', function() {
   var bt;
   var req;
 
-  describe('Read', function () {
+  describe.only('Read', function () {
     boot.setup(function(store) {
-      var manage = store.kansasManage(bt.fix.api);
+      var manage = store.kansasManage(store.fix.api);
       manage.setup({
         provide: function(/* req, res */) {
           return Promise.resolve({
-            userId: 'hip',
+            ownerId: 'hip',
             policyName: 'free',
           });
         }
