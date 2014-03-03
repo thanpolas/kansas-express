@@ -9,7 +9,7 @@
 /**
  * @fileOverview Manage bootstrap module.
  */
-var KansasManage = require('../../manage.ctrl');
+var KansasManage = require('./lib/manage.ctrl');
 
 /**
  * The manage bootstrap module.

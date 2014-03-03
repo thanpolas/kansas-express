@@ -2,11 +2,7 @@
  * @fileOverview Main testing helper lib.
  */
 
-var kansas = require('../..');
-
 var tester = module.exports = {};
-
-tester.kansas = kansas;
 
 tester.setup = null;
 tester.teardown = null;
