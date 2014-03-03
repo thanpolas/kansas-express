@@ -14,7 +14,7 @@ describe('Manage', function() {
 
   describe('Create', function () {
     boot.setup(function(store) {
-      var manage = store.kansasManage();
+      var manage = store.kansasManage(store.fix.api);
       manage.setup({
         provide: function(/* req, res */) {
           return Promise.resolve({
@@ -29,12 +29,13 @@ describe('Manage', function() {
       req = bt.req;
     });
 
-    it('Will create a new token', function(done) {
+    it.only('Will create a new token', function(done) {
       req.post('/token')
-        .set('Content-Type', 'application/json')
+        // .set('Content-Type', 'application/json')
         .expect(200)
         .expect('Content-Type', /json/)
         .end(function(err, res) {
+          console.log('EEEEEEEEEEEEEEEEEEEEEEEEEEE', err, res.body);
           expect(res.body.token).to.be.a('string');
           expect(res.body.token).to.have.length(32);
           expect(res.body.ownerId).to.equal('hip');

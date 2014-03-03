@@ -14,7 +14,7 @@ describe('Manage Delete', function() {
 
   describe('Delete', function () {
     boot.setup(function(store) {
-      var manage = store.kansasManage();
+      var manage = store.kansasManage(bt.fix.api);
       manage.setup({
         provide: function(/* req, res */) {
           return Promise.resolve({
