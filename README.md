@@ -106,7 +106,7 @@ var kansasManage = require('kansas-express/manage');
 // initialize kansas
 var api = kansas();
 
-var manage = store.kansasManage(api);
+var manage = kansasManage(api);
 manage.setup({
   // the provide callback is required
   // it will provide the ownerId and policyName
