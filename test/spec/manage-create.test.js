@@ -16,7 +16,9 @@ describe('Manage', function() {
     boot.setup(function(store) {
       var manage = store.kansasManage(store.fix.api);
       manage.setup({
-        provide: function(/* req, res */) {
+        provide: function(req, res) {
+          expect(req).to.be.an('Object');
+          expect(res).to.be.an('Object');
           return Promise.resolve({
             ownerId: 'hip',
             policyName: 'free',
