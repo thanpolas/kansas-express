@@ -188,7 +188,11 @@ The custom Success Handler will be invoked with the following three arguments:
   * delete
 
 ## Release History
-- **v0.0.1**, *03 Feb 2014*
+
+- **v0.0.2**, *08 Mar 2014*
+    - Fix not passing req/res to provide method
+    - Update Kansas to latest.
+- **v0.0.1**, *03 Mar 2014*
     - Big Bang
 
 ## License
