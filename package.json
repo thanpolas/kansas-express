@@ -23,7 +23,7 @@
     "test": "./node_modules/.bin/mocha -b test/spec -u bdd  -R spec"
   },
   "peerDependencies": {
-    "kansas": "~0.1.9"
+    "kansas": "~0.1.10"
   },
   "dependencies": {
     "logg": "~0.2.2",
@@ -34,7 +34,7 @@
     "grunt-release": "~0.7.0"
   },
   "devDependencies": {
-    "kansas": "~0.1.9",
+    "kansas": "~0.1.10",
     "load-grunt-tasks": "~0.4.0",
     "mocha": "~1.17.1",
     "grunt-mocha-test": "~0.9.4",

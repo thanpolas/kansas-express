@@ -189,8 +189,8 @@ The custom Success Handler will be invoked with the following three arguments:
 
 ## Release History
 
-- **v0.0.4**, *09 Mar 2014*
-    - Update to Kansas v0.1.9
+- **v0.0.5**, *09 Mar 2014*
+    - Update to Kansas v0.1.10
 - **v0.0.3**, *08 Mar 2014*
     - Fix not passing req/res to provide method
     - Update Kansas to latest.
