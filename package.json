@@ -1,6 +1,6 @@
 {
   "name": "kansas-express",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "main": "./",
   "description": "Kansas API usage limiter Middleware for Connect.",
   "homepage": "https://github.com/thanpolas/kansas-express",
@@ -23,7 +23,7 @@
     "test": "./node_modules/.bin/mocha -b test/spec -u bdd  -R spec"
   },
   "peerDependencies": {
-    "kansas": "~0.2.0"
+    "kansas": "^0.2.2"
   },
   "dependencies": {
     "logg": "~0.3.0",
@@ -31,11 +31,10 @@
     "middlewarify": "~0.3.7",
     "bluebird": "~1.2.1",
     "lodash": "~2.4.1",
-    "grunt-release": "~0.7.0",
-    "kansas": "^0.2.2"
+    "grunt-release": "~0.7.0"
   },
   "devDependencies": {
-    "kansas": "~0.2.0",
+    "kansas": "^0.2.2",
     "load-grunt-tasks": "~0.4.0",
     "mocha": "~1.18.2",
     "grunt-mocha-test": "~0.10.0",
