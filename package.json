@@ -1,6 +1,6 @@
 {
   "name": "kansas-express",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "./",
   "description": "Kansas API usage limiter Middleware for Connect.",
   "homepage": "https://github.com/thanpolas/kansas-express",
