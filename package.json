@@ -31,7 +31,8 @@
     "middlewarify": "~0.3.7",
     "bluebird": "~1.2.1",
     "lodash": "~2.4.1",
-    "grunt-release": "~0.7.0"
+    "grunt-release": "~0.7.0",
+    "kansas": "^0.2.2"
   },
   "devDependencies": {
     "kansas": "~0.2.0",
