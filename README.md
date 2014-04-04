@@ -10,7 +10,11 @@ Install the module with: `npm install kansas-express --save`
 
 ## Overview
 
-Kansas Express offers two type of Middleware, [Consume](#the-consume-middleware) and [Manage](#the-manage-middleware).
+Kansas Express offers the following types of Middleware:
+
+* [Consume](#the-consume-middleware) Limit your API usage based on available units per period.
+* [Count](#the-count-middleware) No limits on API usage, just count.
+* [Manage](#the-manage-middleware) CRUD operations for tokens.
 
 ## The Consume Middleware
 
@@ -21,17 +25,17 @@ var kansas = require('kansas');
 var kansasConsume = require('kansas-express/consume');
 
 // initialize kansas
-var api = kansas();
+exports.kansas = kansas();
 
 // initialize Consume Middleware
-var consume = kansasConsume(api);
+var consume = kansasConsume(exports.kansas);
 
 // add to any route
 app.get('/api/clients', consume.use());
 app.get('/api/clients', theAppLogicHandler);
 ```
 
-The Consume Middleware will check that the API Token is properly set in the request Headers, it exists and it has available units to consume. The remaining usage units will be propagated on the response Headers.
+The Consume Middleware will check that the API Token is properly set in the request Headers. If it exists and it has available units to consume, then the API call will be allowed and the remaining usage units will be propagated on the response Headers.
 
 ### Configuring the Consume Middleware
 
@@ -66,7 +70,7 @@ app.get('/api/allclients', anotherAppLogicHandler);
 
 ### Consume Error Handling and Types of errors
 
-By default the consume middleware will generate these HTTP Codes on error:
+By default the Consume Middleware will generate these HTTP Codes on error:
 
 | Error Type | HTTP Code |
 |---|---|
@@ -87,6 +91,68 @@ The custom Success Handler will be invoked with the following three arguments:
 * **res** `Object` The Express response Object.
 * **next** `Function` The Express callback to pass controll to the next Express Middleware.
 * **remaining** `number` The number or remaining usage units.
+
+## The Count Middleware
+
+Add the Count middleware on every resource you want to count usage. The Count middleware requires a [Kansas][] instance.
+
+```js
+var kansas = require('kansas');
+var kansasCount = require('kansas-express/count');
+
+// initialize kansas
+exports.kansas = kansas();
+
+// initialize Count Middleware
+var apiCount = kansasCount(exports.kansas);
+
+// add to any route
+app.get('/api/clients', apiCount.use());
+app.get('/api/clients', theAppLogicHandler);
+```
+
+### Configuring the Count Middleware
+
+Use the method `setup()` to configure the Count Middleware, it accepts an Object with any of the following properties
+
+* **consumeUnits** `number` *default*: 1 How many units to consume per request.
+* **headerToken** `string` *default*: 'X-Api-Token' Header key to expect the API token.
+* **headerCount** `string` *default*: 'none' Define to populate the Usage Count on the response Header.
+* **handleError** `Function(res, err)` You can overwrite the default Error handler.
+* **handleSuccess** `Function(res, next, remaining)` You can overwrite the default Success handler.
+
+```js
+var kansasCount = require('kansas-express/count');
+
+// create an instance of the Count Middleware
+var apiCount = kansasCount(kansas);
+
+// Consume 5 units by default
+apiCount.setup({
+    consumeUnits: 5,
+});
+```
+
+### Count Error Handling and Types of errors
+
+By default the Count Middleware will generate these HTTP Codes on error:
+
+| Error Type | HTTP Code |
+|---|---|
+| Token Header not set | 401 |
+| Token Header set but invalid value | 401 |
+| Token does not exist in store| 401 |
+| Any other error generated | 401 |
+
+If you define your own Error Handler it will be invoked with two arguments, `res` the response object and `error` the error object. All errors will have the `httpcode` property, a number indicating the suggested HTTP error Code.
+
+### Count Success Handling
+
+The custom Success Handler will be invoked with the following three arguments:
+
+* **res** `Object` The Express response Object.
+* **next** `Function` The Express callback to pass controll to the next Express Middleware.
+* **consumed** `number` The number or consumed usage units.
 
 ## The Manage Middleware
 
