@@ -28,6 +28,7 @@ fixtures.setupCase = function(cb) {
   var policyItemBasic;
   var tokenItem;
   var tokenItemTwo;
+  var policyItemCount;
 
   var policyFree = {
     name: 'free',
@@ -41,6 +42,12 @@ fixtures.setupCase = function(cb) {
     maxTokens: 10,
     limit: 100,
     period: 'month',
+  };
+
+  var policyCount = {
+    name: 'enterprise',
+    maxTokens: 100,
+    count: true,
   };
 
   tester.setup(function(done) {
@@ -58,10 +65,11 @@ fixtures.setupCase = function(cb) {
 
   tester.setup(function() {
     policyItem = api.policy.create(policyFree);
+    policyItemBasic = api.policy.create(policyBasic);
+    policyItemCount = api.policy.create(policyCount);
   });
 
   tester.setup(function() {
-    policyItemBasic = api.policy.create(policyBasic);
   });
 
   tester.setup(function(done) {
@@ -89,6 +97,7 @@ fixtures.setupCase = function(cb) {
       token: tokenItem.token,
       tokenItem: tokenItem,
       tokenItemTwo: tokenItemTwo,
+      policyItemCount: policyItemCount,
     });
   });
 };

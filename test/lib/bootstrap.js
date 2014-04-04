@@ -8,6 +8,7 @@ var Web = require('./web');
 
 var boot = module.exports = {};
 var kansasConsume = require('../../consume');
+var kansasCount = require('../../count');
 var kansasManage = require('../../manage');
 
 boot.setup = function(setupExpress, cb) {
@@ -27,6 +28,7 @@ boot.setup = function(setupExpress, cb) {
         app: app,
         fix: fix,
         kansasConsume: kansasConsume,
+        kansasCount: kansasCount,
         kansasManage: kansasManage,
       });
     }).then(done.bind(null, null), done);
