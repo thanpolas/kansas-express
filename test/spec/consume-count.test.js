@@ -8,7 +8,7 @@ var expect = chai.expect;
 var Web = require('../lib/web');
 var boot = require('../lib/bootstrap');
 
-describe('Consuming Units', function() {
+describe('Count Usage', function() {
   var bt;
   var req;
 
@@ -41,15 +41,11 @@ describe('Consuming Units', function() {
         .set('X-Api-Token', 'none existing')
         .expect(401, done);
     });
-    it.only('Will consume a unit', function(done) {
+    it('Will consume a unit', function(done) {
       req.get('/resource')
         .set('X-Api-Token', bt.fix.tokenItemCount.token)
-        .end(function(err, res) {
-          console.log('res:', res.body);
-          done();
-        });
-        // .expect(200)
-        // .expect('X-Usage', '1', done);
+        .expect(200)
+        .expect('X-Usage', '1', done);
     });
     it('Will consume multiple units', function(done) {
       var times = new Array(10);
@@ -76,7 +72,7 @@ describe('Consuming Units', function() {
 
   describe('Consume Configuration', function () {
     boot.setup(function(store) {
-      var apiCount = store.kansasCount(bt.fix.api);
+      var apiCount = store.kansasCount(store.fix.api);
 
       apiCount.setup({
         consumeUnits: 5,
