@@ -43,7 +43,7 @@ describe('Consuming Units', function() {
     });
     it('Will consume a unit', function(done) {
       req.get('/resource')
-        .set('X-Api-Token', bt.fix.token)
+        .set('X-Api-Token', bt.fix.tokenItemCount.token)
         .expect(200)
         .expect('X-Usage', '1', done);
     });
@@ -53,7 +53,7 @@ describe('Consuming Units', function() {
         return new Promise(function(resolve, reject) {
           var web = new Web(bt.webserver.expressApp);
           web.req.get('/resource')
-            .set('X-Api-Token', bt.fix.token)
+            .set('X-Api-Token', bt.fix.tokenItemCount.token)
             .expect(200)
             .end(function(err) {
               if (err) { return reject(err); }
@@ -63,7 +63,7 @@ describe('Consuming Units', function() {
       }).then(function() {
         var web = new Web(bt.webserver.expressApp);
         web.req.get('/resource')
-          .set('X-Api-Token', bt.fix.token)
+          .set('X-Api-Token', bt.fix.tokenItemCount.token)
           .expect(200)
           .expect('X-Usage', '11', done);
       }).catch(done);
@@ -109,7 +109,7 @@ describe('Consuming Units', function() {
     });
     it('Will consume a unit', function(done) {
       req.get('/resource')
-        .set('X-Token', bt.fix.token)
+        .set('X-Token', bt.fix.tokenItemCount.token)
         .expect(200)
         .expect('X-Zit', '5', done);
     });

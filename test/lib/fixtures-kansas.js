@@ -29,6 +29,7 @@ fixtures.setupCase = function(cb) {
   var tokenItem;
   var tokenItemTwo;
   var policyItemCount;
+  var tokenItemCount;
 
   var policyFree = {
     name: 'free',
@@ -88,6 +89,14 @@ fixtures.setupCase = function(cb) {
       tokenItemTwo = item;
     }).then(done, done);
   });
+  tester.setup(function(done) {
+    api.create({
+      policyName: policyItemCount.name,
+      ownerId: 'hop',
+    }).then(function(item) {
+      tokenItemCount = item;
+    }).then(done, done);
+  });
 
   tester.setup(function() {
     cb({
@@ -98,6 +107,7 @@ fixtures.setupCase = function(cb) {
       tokenItem: tokenItem,
       tokenItemTwo: tokenItemTwo,
       policyItemCount: policyItemCount,
+      tokenItemCount: tokenItemCount,
     });
   });
 };
