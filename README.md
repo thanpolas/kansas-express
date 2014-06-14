@@ -255,6 +255,8 @@ The custom Success Handler will be invoked with the following three arguments:
 
 ## Release History
 
+- **v0.2.1**, *14 Jun 2014*
+    - express 4.0 OK!
 - **v0.2.0**, *04 Apr 2014*
     - Update to Kansas v0.2.x
     - Added the Count Middleware.
