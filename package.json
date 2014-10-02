@@ -23,25 +23,25 @@
     "test": "./node_modules/.bin/mocha -b test/spec -u bdd  -R spec"
   },
   "peerDependencies": {
-    "kansas": "^0.2.2"
+    "kansas": "^0.2.4"
   },
   "dependencies": {
     "logg": "~0.3.0",
-    "cip": "~0.2.4",
-    "middlewarify": "~0.3.7",
-    "bluebird": "~1.2.1",
+    "cip": "~0.2.5",
+    "middlewarify": "~0.4.0",
+    "bluebird": "~2.3.4",
     "lodash": "~2.4.1",
     "grunt-release": "~0.7.0"
   },
   "devDependencies": {
-    "kansas": "^0.2.2",
-    "load-grunt-tasks": "~0.4.0",
-    "mocha": "~1.18.2",
-    "grunt-mocha-test": "~0.10.0",
-    "supertest": "~0.10.0",
-    "grunt": "~0.4.4",
-    "chai": "~1.9.1",
-    "sinon": "~1.9.1",
-    "express": "~3.5.1"
+    "kansas": "^0.2.4",
+    "load-grunt-tasks": "~0.6.0",
+    "mocha": "~1.21.4",
+    "grunt-mocha-test": "~0.12.1",
+    "supertest": "~0.14.0",
+    "grunt": "~0.4.5",
+    "chai": "~1.9.2",
+    "sinon": "~1.10.3",
+    "express": "~4.9.5"
   }
 }
