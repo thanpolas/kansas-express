@@ -46,6 +46,7 @@ Use the method `setup()` to configure the Consume Middleware, it accepts an Obje
 * **headerRemaining** `string` *default*: 'X-RateLimit-Remaining' Header key to populate the response with.
 * **handleError** `Function(res, err)` You can overwrite the default Error handler.
 * **handleSuccess** `Function(res, next, remaining)` You can overwrite the default Success handler.
+* **behindProxy** `boolean` *default*: false Set to true if node is running beind a reverse-proxy configuration like Heroku for e.g, this is used for fetching the correct Client IP when debug logging occurs.
 
 ```js
 var kansasConsume = require('kansas-express/consume');
@@ -91,6 +92,7 @@ The custom Success Handler will be invoked with the following three arguments:
 * **res** `Object` The Express response Object.
 * **next** `Function` The Express callback to pass controll to the next Express Middleware.
 * **remaining** `number` The number or remaining usage units.
+* **behindProxy** `boolean` *default*: false Set to true if node is running beind a reverse-proxy configuration like Heroku for e.g, this is used for fetching the correct Client IP when debug logging occurs.
 
 ## The Count Middleware
 
@@ -120,6 +122,7 @@ Use the method `setup()` to configure the Count Middleware, it accepts an Object
 * **headerCount** `string` *default*: 'none' Define to populate the Usage Count on the response Header.
 * **handleError** `Function(res, err)` You can overwrite the default Error handler.
 * **handleSuccess** `Function(res, next, remaining)` You can overwrite the default Success handler.
+* **behindProxy** `boolean` *default*: false Set to true if node is running beind a reverse-proxy configuration like Heroku for e.g, this is used for fetching the correct Client IP when debug logging occurs.
 
 ```js
 var kansasCount = require('kansas-express/count');
@@ -151,7 +154,7 @@ If you define your own Error Handler it will be invoked with two arguments, `res
 The custom Success Handler will be invoked with the following three arguments:
 
 * **res** `Object` The Express response Object.
-* **next** `Function` The Express callback to pass controll to the next Express Middleware.
+* **next** `Function` The Express callback to pass control to the next Express Middleware.
 * **consumed** `number` The number or consumed usage units.
 
 ## The Manage Middleware
@@ -255,6 +258,9 @@ The custom Success Handler will be invoked with the following three arguments:
 
 ## Release History
 
+- **v0.2.2**, *02 Oct 2014*
+    - Added debug logging on all failure cases.
+    - Added `behindProxy` option for better IP reporting on the debug logging.
 - **v0.2.1**, *14 Jun 2014*
     - express 4.0 OK!
 - **v0.2.0**, *04 Apr 2014*
@@ -269,6 +275,7 @@ The custom Success Handler will be invoked with the following three arguments:
     - Big Bang
 
 ## License
+
 Copyright (c) 2014 Thanasis Polychronakis. Licensed under the MIT license.
 
 [express]: expressjs.com

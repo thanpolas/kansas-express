@@ -6,7 +6,7 @@ var http = require('http');
 var cip = require('cip');
 var Promise = require('bluebird');
 var express = require('express');
-
+var bodyParser = require('body-parser');
 
 /**
  * The webserver test helper.
@@ -48,10 +48,8 @@ Webserver.prototype.express = function(optPayload) {
 
     // Setup express
     app.set('port', Webserver.PORT);
-    app.use(express.json());
-    app.use(express.urlencoded());
-
-    app.use(app.router);
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded());
 
     payload(app);
 
