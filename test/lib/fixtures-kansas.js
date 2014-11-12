@@ -60,7 +60,7 @@ fixtures.setupCase = function(cb) {
   });
 
   tester.setup(function(done) {
-    api.db.nuke('Yes purge all records irreversably', 'test-connect')
+    api.db.nuke('Yes purge all records irreversibly', 'test-connect')
       .then(done, done);
   });
 
