@@ -258,7 +258,7 @@ The custom Success Handler will be invoked with the following three arguments:
 
 ## Release History
 
-- **v0.2.3**, *12 Nov 2014*
+- **v0.2.4**, *12 Nov 2014*
     - Updated Kansas *peerDependency* to latest (0.3.2).
 - **v0.2.2**, *02 Oct 2014*
     - Added debug logging on all failure cases.
